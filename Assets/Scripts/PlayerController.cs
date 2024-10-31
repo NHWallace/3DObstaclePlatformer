@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Basis of controller provided by example by Unity at https://docs.unity3d.com/ScriptReference/CharacterController.Move.html
-// Example has been modified to use the new input system
-
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour {
     [SerializeField] private CharacterController characterController;
