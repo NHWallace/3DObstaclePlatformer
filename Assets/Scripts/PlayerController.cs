@@ -63,7 +63,8 @@ public class PlayerController : MonoBehaviour {
 
         newVelocity.y += verticalVelocity;
         characterController.Move(newVelocity * Time.deltaTime);
-        playerAnimator.SetFloat("Velocity", newVelocity.magnitude);
+        Vector3 horizontalVelocity = new Vector3(newVelocity.x, 0f, newVelocity.z);
+        playerAnimator.SetFloat("Velocity", horizontalVelocity.magnitude);
     }
 
     private void MoveVertical() {
@@ -109,7 +110,7 @@ public class PlayerController : MonoBehaviour {
         characterController.enabled = true;
     }
 
-    private void SetSpawnPoint(Transform spawnPoint) {
+    public void SetSpawnPoint(Transform spawnPoint) {
         this.spawnPoint = spawnPoint;
     }
 }
