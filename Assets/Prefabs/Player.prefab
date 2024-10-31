@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 7871244213074916910}
   - component: {fileID: 5442252961233339254}
   - component: {fileID: 7720737789316830672}
-  - component: {fileID: 8033263506861251661}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -174,26 +173,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 3639326227556414349}
   cameraFollowPoint: {fileID: 4945277394753127335}
-  runAcceleration: 50
-  runSpeed: 4
+  runAcceleration: 42
+  runSpeed: 8
   drag: 30
-  jumpHeight: 1
-  gravityValue: -9.81
+  jumpHeight: 1.5
+  gravityValue: -30
   lookSenseH: 0.1
   lookSenseV: 0.1
   lookLimitV: 40
---- !u!114 &8033263506861251661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4490416076877438587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 793f66aab4300d248ae726df8b709b46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
 --- !u!1 &7978060659265610156
 GameObject:
   m_ObjectHideFlags: 0
