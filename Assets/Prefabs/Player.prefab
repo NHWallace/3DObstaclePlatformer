@@ -173,14 +173,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 3639326227556414349}
   cameraFollowPoint: {fileID: 4945277394753127335}
-  runAcceleration: 50
-  runSpeed: 4
+  runAcceleration: 42
+  runSpeed: 8
   drag: 30
-  jumpHeight: 1
-  gravityValue: -9.81
+  jumpHeight: 1.5
+  gravityValue: -30
   lookSenseH: 0.1
   lookSenseV: 0.1
   lookLimitV: 40
+  spawnPoint: {fileID: 0}
 --- !u!1 &7978060659265610156
 GameObject:
   m_ObjectHideFlags: 0
