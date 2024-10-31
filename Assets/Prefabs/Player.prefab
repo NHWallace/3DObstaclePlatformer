@@ -156,7 +156,7 @@ CharacterController:
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.00001
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &7720737789316830672
@@ -171,11 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d8e21346c9b3147bb47f6fe46aca7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
+  playerAnimator: {fileID: 3639326227556414349}
   cameraFollowPoint: {fileID: 4945277394753127335}
   runAcceleration: 50
   runSpeed: 4
   drag: 30
+  jumpHeight: 1
+  gravityValue: -9.81
   lookSenseH: 0.1
   lookSenseV: 0.1
   lookLimitV: 40
@@ -345,11 +347,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Y Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 593045b4d85341b49abf41f111499377,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e5926b681a5f1d7409cfc857ca56dedc, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 593045b4d85341b49abf41f111499377,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 593045b4d85341b49abf41f111499377, type: 3}
+--- !u!95 &3639326227556414349 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 593045b4d85341b49abf41f111499377,
+    type: 3}
+  m_PrefabInstance: {fileID: 7200110413638503964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7233158376748673527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 593045b4d85341b49abf41f111499377,
