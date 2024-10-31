@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour {
     private bool groundedPlayer;
     private float verticalVelocity;
 
+    [Header("Misc Fields")]
+    public Transform spawnPoint;
+
     private void Awake() {
         inputManager = InputManager.Instance;
         characterController = gameObject.GetComponent<CharacterController>();
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 movementDelta = movementDirection * runAcceleration * Time.deltaTime;
         Vector3 newVelocity = characterController.velocity + movementDelta;
+        newVelocity.y = 0f; // Workaround to prevent jumping from slowing the player down
 
         Vector3 currentDrag = newVelocity.normalized * drag * Time.deltaTime;
         newVelocity = (newVelocity.magnitude > drag * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
@@ -59,7 +63,8 @@ public class PlayerController : MonoBehaviour {
 
         newVelocity.y += verticalVelocity;
         characterController.Move(newVelocity * Time.deltaTime);
-        playerAnimator.SetFloat("Velocity", newVelocity.magnitude);
+        Vector3 horizontalVelocity = new Vector3(newVelocity.x, 0f, newVelocity.z);
+        playerAnimator.SetFloat("Velocity", horizontalVelocity.magnitude);
     }
 
     private void MoveVertical() {
@@ -92,5 +97,20 @@ public class PlayerController : MonoBehaviour {
 
         // CineMachine prevents Camera x rotation from being altered, so the follow point is changed instead
         cameraFollowPoint.transform.rotation = Quaternion.Euler(-cameraRotation.y, cameraRotation.x, 0f);
+    }
+
+    public void Die() {
+        Respawn();
+    }
+
+    private void Respawn() {
+        characterController.velocity.Set(0f, 0f, 0f);
+        characterController.enabled = false;
+        characterController.transform.position = spawnPoint.position;
+        characterController.enabled = true;
+    }
+
+    public void SetSpawnPoint(Transform spawnPoint) {
+        this.spawnPoint = spawnPoint;
     }
 }
