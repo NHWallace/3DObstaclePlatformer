@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Singleton pattern
+[DefaultExecutionOrder(-10)] // Ensure this runs before other scripts
 public class InputManager : MonoBehaviour {
     private static InputManager instance;
 
