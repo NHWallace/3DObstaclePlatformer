@@ -64,6 +64,6 @@ public class PlayerController : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0f, playerTargetRotation.x, 0f);
 
         // CineMachine prevents Camera x rotation from being altered, so the follow point is changed instead
-        cameraFollowPoint.transform.rotation = Quaternion.Euler(cameraRotation.y, cameraRotation.x, 0f);
+        cameraFollowPoint.transform.rotation = Quaternion.Euler(-cameraRotation.y, cameraRotation.x, 0f);
     }
 }
