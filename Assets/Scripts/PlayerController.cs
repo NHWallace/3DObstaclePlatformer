@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour {
         Vector3 newVelocity = characterController.velocity + movementDelta;
         newVelocity.y = 0f; // Workaround to prevent jumping from slowing the player down
 
-        Vector3 currentDrag = newVelocity.normalized * drag * Time.deltaTime;
+        // Drag is 0 in the player is in the air - keeps forward momentum
+        Vector3 currentDrag = (groundedPlayer)? newVelocity.normalized * drag * Time.deltaTime : Vector3.zero;
         newVelocity = (newVelocity.magnitude > drag * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
         newVelocity = Vector3.ClampMagnitude(newVelocity, runSpeed);
 

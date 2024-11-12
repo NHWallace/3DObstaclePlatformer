@@ -4699,6 +4699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7720737789316830672, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
+      propertyPath: drag
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7720737789316830672, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1534768496}
