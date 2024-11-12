@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     private Vector2 playerTargetRotation = Vector2.zero;
     private bool groundedPlayer;
     private float verticalVelocity;
+    private float timeSpentInAir;
 
     [Header("Misc Fields")]
     public Transform spawnPoint;
@@ -46,6 +47,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void MoveHorizontal() {
+        if (!groundedPlayer) {
+            timeSpentInAir += Time.deltaTime;
+        }
+        else {
+            timeSpentInAir = 0;
+        }
 
         Vector3 cameraForwardXZ = new Vector3(playerCamera.transform.forward.x, 0f, playerCamera.transform.forward.z).normalized;
         Vector3 cameraRightXZ = new Vector3(playerCamera.transform.right.x, 0f, playerCamera.transform.right.z).normalized;
@@ -63,14 +70,16 @@ public class PlayerController : MonoBehaviour {
         newVelocity.y = 0f; // Workaround to prevent jumping from slowing the player down
 
         // Drag is 0 if the player is in the air - keeps forward momentum
-        Vector3 currentDrag = (groundedPlayer)? newVelocity.normalized * drag * Time.deltaTime : Vector3.zero;
+        Vector3 currentDrag = (timeSpentInAir < 0.2) ? newVelocity.normalized * drag * Time.deltaTime : Vector3.zero;
         newVelocity = (newVelocity.magnitude > drag * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
         newVelocity = Vector3.ClampMagnitude(newVelocity, runSpeed);
 
-        newVelocity.y += verticalVelocity;
-        characterController.Move(newVelocity * Time.deltaTime);
+        // send horizontal velocity to animator
         Vector3 horizontalVelocity = new Vector3(newVelocity.x, 0f, newVelocity.z);
         playerAnimator.SetFloat("Velocity", horizontalVelocity.magnitude);
+
+        newVelocity.y += verticalVelocity;
+        characterController.Move(newVelocity * Time.deltaTime);
     }
 
     private void MoveVertical() {
@@ -116,4 +125,5 @@ public class PlayerController : MonoBehaviour {
     public void SetSpawnPoint(Transform spawnPoint) {
         this.spawnPoint = spawnPoint;
     }
+
 }
