@@ -53,11 +53,17 @@ public class PlayerController : MonoBehaviour {
         Vector2 movementInput = inputManager.GetPlayerMovement();
         Vector3 movementDirection = cameraRightXZ * movementInput.x + cameraForwardXZ * movementInput.y;
 
+        // Change the direction the player model is facing if the player input movement this frame
+        if (movementDirection != Vector3.zero) {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movementDirection), Time.deltaTime * 9f);
+        }
+
         Vector3 movementDelta = movementDirection * runAcceleration * Time.deltaTime;
         Vector3 newVelocity = characterController.velocity + movementDelta;
         newVelocity.y = 0f; // Workaround to prevent jumping from slowing the player down
 
-        Vector3 currentDrag = newVelocity.normalized * drag * Time.deltaTime;
+        // Drag is 0 if the player is in the air - keeps forward momentum
+        Vector3 currentDrag = (groundedPlayer)? newVelocity.normalized * drag * Time.deltaTime : Vector3.zero;
         newVelocity = (newVelocity.magnitude > drag * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
         newVelocity = Vector3.ClampMagnitude(newVelocity, runSpeed);
 
@@ -91,9 +97,6 @@ public class PlayerController : MonoBehaviour {
         Vector2 mouseDelta = inputManager.GetMouseDelta();
         cameraRotation.x += lookSenseH * mouseDelta.x;
         cameraRotation.y = Mathf.Clamp(cameraRotation.y - lookSenseV * mouseDelta.y, -lookLimitV, lookLimitV);
-
-        playerTargetRotation.x += transform.eulerAngles.x + lookSenseH * mouseDelta.x;
-        transform.rotation = Quaternion.Euler(0f, playerTargetRotation.x, 0f);
 
         // CineMachine prevents Camera x rotation from being altered, so the follow point is changed instead
         cameraFollowPoint.transform.rotation = Quaternion.Euler(-cameraRotation.y, cameraRotation.x, 0f);
