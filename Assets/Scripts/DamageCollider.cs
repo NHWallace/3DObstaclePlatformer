@@ -7,7 +7,7 @@ public class DamageCollider : MonoBehaviour {
     public float pushStrength = 0.5f;
 
     private void OnCollisionEnter(Collision collision) {
-        Debug.Log(this.transform.parent.name + " hit " + collision.gameObject.name + " at " + collision.contacts[0].point);
+        //Debug.Log(this.transform.parent.name + " hit " + collision.gameObject.name + " at " + collision.contacts[0].point);
         Vector3 pointOfContact = collision.contacts[0].point;
         // Check if the collided object has a PlayerHealth component
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
