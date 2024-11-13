@@ -63,6 +63,18 @@ public class PlayerController : MonoBehaviour {
         // Change the direction the player model is facing if the player input movement this frame
         if (movementDirection != Vector3.zero) {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movementDirection), Time.deltaTime * 9f);
+
+            // Play the running sound if the player is grounded
+            if (groundedPlayer) {
+                AudioManager.Instance.PlayRunningSound("Running");
+            }
+            else {
+                AudioManager.Instance.PauseRunningSound();
+            }
+        }
+            // If the player did not input movement this frame, stop the running sound
+        else {
+            AudioManager.Instance.PauseRunningSound();
         }
 
         Vector3 movementDelta = movementDirection * runAcceleration * Time.deltaTime;
@@ -95,6 +107,7 @@ public class PlayerController : MonoBehaviour {
         if (inputManager.PlayerJumpedThisFrame() && groundedPlayer) {
             verticalVelocity += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             playerAnimator.SetTrigger("Jump");
+            AudioManager.Instance.PlayEffect("Jump");
         }
     }
 

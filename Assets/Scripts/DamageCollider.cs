@@ -16,6 +16,7 @@ public class DamageCollider : MonoBehaviour {
         if (playerHealth != null) {
             // Inflict damage on the player
             playerHealth.TakeDamage(damageAmount);
+            AudioManager.Instance.PlayEffect("Damage");
         }
         if (characterController != null) {
             Push(characterController, collision.contacts[0].point, this.transform.position);
