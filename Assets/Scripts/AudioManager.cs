@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public Sound[] music, effects;
-    public AudioSource musicSource, effectsSource;
+    public AudioSource musicSource, effectsSource, runningSource; // Workaround for walking not being a clip for a single step
 
     private void Awake() {
         if (Instance == null) {
@@ -36,8 +36,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayEffects(string effectsName) {
-        Sound effectToPlay = Array.Find(music, x => x.name == effectsName);
+    public void PlayEffect(string effectName) {
+        Sound effectToPlay = Array.Find(effects, x => x.name == effectName);
 
         if (effectToPlay == null) {
             Debug.Log("Effect not found, check name. Case sensitive.");
@@ -45,5 +45,24 @@ public class AudioManager : MonoBehaviour
         else {
             effectsSource.PlayOneShot(effectToPlay.clip);
         }
+    }
+
+    public void PlayRunningSound(string effectName) {
+        Sound effectToPlay = Array.Find(effects, x => x.name == effectName);
+
+        if (effectToPlay == null) {
+            Debug.Log("Effect not found, check name. Case sensitive.");
+        }
+        else {
+            runningSource.clip = (effectToPlay.clip);
+
+            if (!runningSource.isPlaying) {
+                runningSource.Play();
+            }
+        }
+    }
+
+    public void PauseRunningSound() {
+        runningSource.Pause();
     }
 }

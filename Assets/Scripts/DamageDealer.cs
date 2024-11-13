@@ -15,6 +15,7 @@ public class DamageDealer : MonoBehaviour
         {
             // Inflict damage on the player
             playerHealth.TakeDamage(damageAmount);
+            AudioManager.Instance.PlayEffect("Damage");
         }
     }
 }
