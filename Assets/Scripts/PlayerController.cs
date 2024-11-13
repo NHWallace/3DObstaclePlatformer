@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
     private bool groundedPlayer;
     private float verticalVelocity;
     private float timeSpentInAir;
+    PlayerHealth healthHandler;
 
     [Header("Misc Fields")]
     public Transform spawnPoint;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
     private void Awake() {
         inputManager = InputManager.Instance;
         characterController = gameObject.GetComponent<CharacterController>();
+        healthHandler = GetComponent<PlayerHealth>();
         playerCamera = Camera.main;
     }
 
@@ -126,6 +128,8 @@ public class PlayerController : MonoBehaviour {
 
     public void Die() {
         Respawn();
+        healthHandler.currentHealth = healthHandler.maxHealth;
+        healthHandler.healthBar.SetHealth(healthHandler.currentHealth);
     }
 
     private void Respawn() {
