@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour {
     public float runSpeed = 4f;
     public float drag = 30f;
     public float jumpHeight = 1.0f;
-    public float gravityValue = -9.81f;
+    public float gravityModifier = 2f;
 
     [Header("Camera Settings")]
     public float lookSenseH = 0.1f; // Horizontal look sensitivity
@@ -47,9 +48,18 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         //MoveVertical(); // MUST be called before MoveHorizontal
         //MoveHorizontal();
-        Look();
+        //Look();
     }
-    /*
+
+    private void FixedUpdate() {
+        // Rigidbody movement should be handled in FixedUpdate, not Update
+        UpdateGroundedState();
+        MoveVertical();
+        MoveHorizontal();
+        Look();
+        AnimateMovement();
+    }
+
     private void MoveHorizontal() {
         if (!groundedPlayer) {
             timeSpentInAir += Time.deltaTime;
@@ -81,42 +91,40 @@ public class PlayerController : MonoBehaviour {
             AudioManager.Instance.PauseRunningSound();
         }
 
-        Vector3 movementDelta = movementDirection * runAcceleration * Time.deltaTime;
-        Vector3 newVelocity = characterController.velocity + movementDelta;
-        newVelocity.y = 0f; // Workaround to prevent jumping from slowing the player down
-
-        // Drag is 0 if the player is in the air - keeps forward momentum
-        Vector3 currentDrag = (timeSpentInAir < 0.2) ? newVelocity.normalized * drag * Time.deltaTime : Vector3.zero;
-        newVelocity = (newVelocity.magnitude > drag * Time.deltaTime) ? newVelocity - currentDrag : Vector3.zero;
-        newVelocity = Vector3.ClampMagnitude(newVelocity, runSpeed);
-
-        // send horizontal velocity to animator
-        Vector3 horizontalVelocity = new Vector3(newVelocity.x, 0f, newVelocity.z);
-        playerAnimator.SetFloat("Velocity", horizontalVelocity.magnitude);
-
-        newVelocity.y += verticalVelocity;
-        characterController.Move(newVelocity * Time.deltaTime);
-    }*/
-    /*
+        Vector3 movementForce = movementDirection * runSpeed;      
+        rb.AddForce(movementForce);
+    }
+    
     private void MoveVertical() {
-        groundedPlayer = characterController.isGrounded;
-        if (groundedPlayer && verticalVelocity < 0) {
-            verticalVelocity = 0f;
-        }
-
-        verticalVelocity += gravityValue * Time.deltaTime;
-
-        playerAnimator.SetBool("Grounded", groundedPlayer);
-
         if (inputManager.PlayerJumpedThisFrame() && groundedPlayer) {
-            verticalVelocity += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            Vector3 jumpForce = new Vector3 (0, jumpHeight, 0);
+            rb.AddForce(jumpForce);
+
             playerAnimator.SetTrigger("Jump");
             AudioManager.Instance.PlayEffect("Jump");
         }
-    }*/
 
-    private void LateUpdate() {
-        Look();
+        ApplyGravity(); // Needed for the player to have different gravity than other rigidbodies in scene
+    }
+
+    private void ApplyGravity() {
+        if (!Mathf.Approximately(gravityModifier, 1f)) {
+            // Player has a special gravity value
+            rb.useGravity = false;
+            Vector3 gravityForce = new Vector3(0, 1f, 0) * -9.81f * gravityModifier * rb.mass;
+            rb.AddForce(gravityForce);
+
+        }
+        else {
+            // Player has standard gravity
+            rb.useGravity = true;
+        }
+    }
+
+
+    private void UpdateGroundedState() {
+        groundedPlayer = Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+        playerAnimator.SetBool("Grounded", groundedPlayer);
     }
 
     private void Look() {
@@ -128,7 +136,12 @@ public class PlayerController : MonoBehaviour {
         cameraFollowPoint.transform.rotation = Quaternion.Euler(-cameraRotation.y, cameraRotation.x, 0f);
     }
 
-    
+    private void AnimateMovement() {
+        Vector3 horizontalVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        playerAnimator.SetFloat("Velocity", horizontalVelocity.magnitude);
+    }
+
+
     public void SetSpawnPoint(Transform spawnPoint) {
         this.spawnPoint = spawnPoint;
     }
