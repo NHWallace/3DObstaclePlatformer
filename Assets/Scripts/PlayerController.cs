@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -39,6 +40,9 @@ public class PlayerController : MonoBehaviour {
     [Header("Misc Fields")]
     public Transform spawnPoint;
 
+    private Vector2 movementInput;
+    private Vector2 mouseDelta;
+    private bool jumpedThisFrame;
     private void Awake() {
         inputManager = InputManager.Instance;
         healthHandler = GetComponent<PlayerHealth>();
@@ -46,14 +50,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
-        //MoveVertical(); // MUST be called before MoveHorizontal
-        //MoveHorizontal();
-        //Look();
+        GetInput();
+    }
+
+    private void GetInput() {
+        movementInput = inputManager.GetPlayerMovement();
+        jumpedThisFrame = inputManager.PlayerJumpedThisFrame();
+        mouseDelta = inputManager.GetMouseDelta();
+        UpdateGroundedState();
     }
 
     private void FixedUpdate() {
         // Rigidbody movement should be handled in FixedUpdate, not Update
-        UpdateGroundedState();
         MoveVertical();
         MoveHorizontal();
         Look();
@@ -72,7 +80,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 cameraForwardXZ = new Vector3(playerCamera.transform.forward.x, 0f, playerCamera.transform.forward.z).normalized;
         Vector3 cameraRightXZ = new Vector3(playerCamera.transform.right.x, 0f, playerCamera.transform.right.z).normalized;
 
-        Vector2 movementInput = inputManager.GetPlayerMovement();
+        //Vector2 movementInput = inputManager.GetPlayerMovement(); // moved to GetInput();
         Vector3 movementDirection = cameraRightXZ * movementInput.x + cameraForwardXZ * movementInput.y;
 
         // Change the direction the player model is facing if the player input movement this frame
@@ -95,10 +103,24 @@ public class PlayerController : MonoBehaviour {
         Vector3 movementForce = movementDirection * runAcceleration;      
         rb.AddForce(movementForce);
         LimitHorizontalSpeed();
+
+        // manually apply drag
+        // note: rigidbodies move only on FixedUpdate so use fixedDeltaTime instead of deltaTime
+        Vector3 movementDelta = movementDirection * runAcceleration * Time.fixedDeltaTime;
+        float savedVerticalVelocity = rb.velocity.y;
+        Vector3 newVelocity = rb.velocity + movementDelta;
+        newVelocity.y = 0f;
+        Vector3 currentDrag = newVelocity.normalized * rb.drag * Time.fixedDeltaTime;
+        newVelocity = (newVelocity.magnitude > rb.drag * Time.fixedDeltaTime) ? newVelocity - currentDrag : Vector3.zero;
+        newVelocity = Vector3.ClampMagnitude(newVelocity, runSpeed);
+        newVelocity.y = savedVerticalVelocity;
+        rb.velocity = newVelocity;
+
     }
     
     private void MoveVertical() {
-        if (inputManager.PlayerJumpedThisFrame() && groundedPlayer) {
+        //jumpedThisFrame moved to GetInput();
+        if (jumpedThisFrame && groundedPlayer) {
             Vector3 jumpForce = new Vector3 (0, jumpHeight, 0);
             rb.AddForce(jumpForce);
 
@@ -130,7 +152,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Look() {
-        Vector2 mouseDelta = inputManager.GetMouseDelta();
+        // Vector2 mouseDelta = inputManager.GetMouseDelta(); // moved to GetInput()
         cameraRotation.x += lookSenseH * mouseDelta.x;
         cameraRotation.y = Mathf.Clamp(cameraRotation.y - lookSenseV * mouseDelta.y, -lookLimitV, lookLimitV);
 
