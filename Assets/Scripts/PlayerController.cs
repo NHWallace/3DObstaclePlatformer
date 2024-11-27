@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour {
 
 
     [Header("Movement Settings")]
-    public float runAcceleration = 50f;
     public float runSpeed = 4f;
-    public float drag = 30f;
+    public float runAcceleration = 50f;
+    public float groundDrag = 30f;
     public float jumpHeight = 1.0f;
     public float gravityModifier = 2f;
 
@@ -58,14 +58,15 @@ public class PlayerController : MonoBehaviour {
         MoveHorizontal();
         Look();
         AnimateMovement();
+        Debug.Log("Speed: " + rb.velocity.magnitude.ToString());
     }
 
     private void MoveHorizontal() {
-        if (!groundedPlayer) {
-            timeSpentInAir += Time.deltaTime;
+        if (groundedPlayer) {
+            rb.drag = groundDrag;
         }
         else {
-            timeSpentInAir = 0;
+            rb.drag = 0;
         }
 
         Vector3 cameraForwardXZ = new Vector3(playerCamera.transform.forward.x, 0f, playerCamera.transform.forward.z).normalized;
@@ -91,8 +92,9 @@ public class PlayerController : MonoBehaviour {
             AudioManager.Instance.PauseRunningSound();
         }
 
-        Vector3 movementForce = movementDirection * runSpeed;      
+        Vector3 movementForce = movementDirection * runAcceleration;      
         rb.AddForce(movementForce);
+        LimitHorizontalSpeed();
     }
     
     private void MoveVertical() {
@@ -150,6 +152,15 @@ public class PlayerController : MonoBehaviour {
         //Respawn();
         healthHandler.currentHealth = healthHandler.maxHealth;
         healthHandler.healthBar.SetHealth(healthHandler.currentHealth);
+    }
+
+    public void LimitHorizontalSpeed() {
+        Vector3 currentVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        if (currentVelocity.magnitude > runSpeed) {
+            Vector3 newVelocity = currentVelocity.normalized * runSpeed;
+            rb.velocity = new Vector3(newVelocity.x, rb.velocity.y, newVelocity.z);
+        }
     }
     /*
     private void Respawn() {

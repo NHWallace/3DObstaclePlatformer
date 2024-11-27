@@ -2346,9 +2346,9 @@ MonoBehaviour:
   player: {fileID: 597083031}
   playerObj: {fileID: 934256035}
   rb: {fileID: 597083033}
-  runAcceleration: 10
-  runSpeed: 70
-  drag: 20
+  runSpeed: 12
+  runAcceleration: 80
+  groundDrag: 3
   jumpHeight: 630
   gravityModifier: 2.6
   lookSenseH: 0.1
