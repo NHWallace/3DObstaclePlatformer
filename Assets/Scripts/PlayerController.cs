@@ -17,11 +17,11 @@ public class PlayerController : MonoBehaviour {
 
 
     [Header("Movement Settings")]
-    public float runSpeed = 4f;
-    public float runAcceleration = 50f;
-    public float groundDrag = 30f;
-    public float jumpHeight = 1.0f;
-    public float gravityModifier = 2f;
+    public float runSpeed = 10f;
+    public float runAcceleration = 180f;
+    public float groundDrag = 15f;
+    public float jumpHeight = 580f;
+    public float gravityModifier = 2.2f;
 
     [Header("Camera Settings")]
     public float lookSenseH = 0.1f; // Horizontal look sensitivity
