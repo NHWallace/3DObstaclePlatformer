@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour {
         MoveHorizontal();
         Look();
         AnimateMovement();
-        Debug.Log("Speed: " + rb.velocity.magnitude.ToString());
     }
 
     private void MoveHorizontal() {
