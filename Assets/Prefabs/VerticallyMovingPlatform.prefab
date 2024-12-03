@@ -188,4 +188,3 @@ MonoBehaviour:
   - {fileID: 6185421314115090244}
   - {fileID: 5998990836215804122}
   moveSpeed: 2
-  moveVelocity: {x: 0, y: 0, z: 0}

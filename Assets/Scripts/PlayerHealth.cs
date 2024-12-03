@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthBar;            // Reference to the HealthBar script
     public Transform spawnPoint;            // Reference to the spawn point
 
-    private CharacterController characterController; // Reference to CharacterController
+    private PlayerController playerController; // Reference to PlayerController
 
     private void Start()
     {
@@ -18,8 +18,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        // Get the CharacterController component
-        characterController = GetComponent<CharacterController>();
+        // Get the PlayerController component
+        playerController = GetComponent<PlayerController>();
     }
 
     public void TakeDamage(int damageAmount)
@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            characterController.gameObject.GetComponent<PlayerController>().Die();
+            playerController.Die();
         }
     }
 }

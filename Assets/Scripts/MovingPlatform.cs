@@ -11,7 +11,8 @@ public class MovingPlatform : MonoBehaviour {
     private Vector3[] positionsToMoveTo;
     private int nextPositionIndex = 0;
     private Vector3 nextPosition;
-    public Vector3 moveVelocity;
+    private Vector3 moveVelocity;
+
 
     private void Start() {
         positionsToMoveTo = new Vector3[pointsToMoveTo.Length];
@@ -20,7 +21,7 @@ public class MovingPlatform : MonoBehaviour {
         }
     }
 
-    void Update() {
+    void FixedUpdate() {
         // Vector3 cannot be null, default value is instead Vector3.zero
         if (nextPosition == Vector3.zero) {
             nextPosition = positionsToMoveTo[0];
@@ -30,19 +31,26 @@ public class MovingPlatform : MonoBehaviour {
             Debug.Log("Not enough positions have been set for moving platform with name " + platform.name);
         }
 
-        //platform.position = Vector3.MoveTowards(platform.position, nextPosition, moveSpeed * Time.deltaTime);
         Vector3 moveDir = (nextPosition - platform.position).normalized;
         moveVelocity = moveDir * moveSpeed;
-        platform.position = platform.position + moveVelocity * Time.deltaTime;
 
-
-
+        platform.position += moveVelocity * Time.deltaTime;
 
         if (Vector3.Distance(platform.position, nextPosition) <= 0.1) {
             // move to the next point, or towards the starting point if there are no more points in the list
             nextPositionIndex = (nextPositionIndex + 1 == positionsToMoveTo.Length) ? 0 : nextPositionIndex + 1;
             nextPosition = positionsToMoveTo[nextPositionIndex];
         }
+    }
+
+    void OnTriggerStay(Collider col) {
+        if (col.gameObject.GetComponent<PlayerController>() != null) {
+            col.transform.parent = this.transform;
+        }
+    }
+
+    void OnTriggerExit(Collider col) {
+        col.transform.parent = null;
     }
 
 }
