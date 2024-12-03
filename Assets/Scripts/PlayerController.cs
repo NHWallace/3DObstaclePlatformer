@@ -126,6 +126,10 @@ public class PlayerController : MonoBehaviour {
 
             playerAnimator.SetTrigger("Jump");
             AudioManager.Instance.PlayEffect("Jump");
+
+            // Reset booleans used in jumping to ensure jump effects do not occur more than once per jump
+            jumpedThisFrame = false;
+            groundedPlayer = false;
         }
 
         ApplyGravity(); // Needed for the player to have different gravity than other rigidbodies in scene

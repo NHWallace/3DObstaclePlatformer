@@ -2101,8 +2101,8 @@ MonoBehaviour:
   runSpeed: 10
   runAcceleration: 180
   groundDrag: 15
-  jumpHeight: 800
-  gravityModifier: 2
+  jumpHeight: 640
+  gravityModifier: 2.2
   lookSenseH: 0.1
   lookSenseV: 0.1
   lookLimitV: 75
