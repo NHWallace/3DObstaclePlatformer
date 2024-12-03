@@ -2096,13 +2096,13 @@ MonoBehaviour:
   playerAnimator: {fileID: 934256036}
   cameraFollowPoint: {fileID: 1403260459}
   player: {fileID: 597083031}
-  playerObj: {fileID: 934256035}
+  playerObj: {fileID: 0}
   rb: {fileID: 597083033}
   runSpeed: 10
-  runAcceleration: 55
-  groundDrag: 8
-  jumpHeight: 630
-  gravityModifier: 2.6
+  runAcceleration: 180
+  groundDrag: 15
+  jumpHeight: 800
+  gravityModifier: 2
   lookSenseH: 0.1
   lookSenseV: 0.1
   lookLimitV: 75
@@ -2141,7 +2141,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597083029}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 642d20f435bdbab4e99f4ac6650c0096, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2157,6 +2157,32 @@ CapsuleCollider:
   m_Height: 1.82
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!143 &597083035
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597083029}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &600957805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3924,12 +3950,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 921526127}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &934256035 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7233158376748673527, guid: f5ce41b912feb1349aafab15f1cdba23,
-    type: 3}
-  m_PrefabInstance: {fileID: 1057611985}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &934256036 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3639326227556414349, guid: f5ce41b912feb1349aafab15f1cdba23,
@@ -4822,6 +4842,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 597083034}
+    - targetCorrespondingSourceObject: {fileID: 4490416076877438587, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597083035}
   m_SourcePrefab: {fileID: 100100000, guid: f5ce41b912feb1349aafab15f1cdba23, type: 3}
 --- !u!1001 &1125734964
 PrefabInstance:
