@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
     public float lookSenseH = 0.1f; // Horizontal look sensitivity
     public float lookSenseV = 0.1f; // Vertical look sensitivity
     public float lookLimitV = 75f; // Limits how far a player can look up/down
+    public bool invertVerticalAxis;
 
     private InputManager inputManager;
     private Camera playerCamera;
@@ -160,8 +161,11 @@ public class PlayerController : MonoBehaviour {
         cameraRotation.x += lookSenseH * mouseDelta.x;
         cameraRotation.y = Mathf.Clamp(cameraRotation.y - lookSenseV * mouseDelta.y, -lookLimitV, lookLimitV);
 
+        // Update vertical inversion value
+        float verticalInverterValue = invertVerticalAxis ? -1f : 1f; 
+
         // CineMachine prevents Camera x rotation from being altered, so the follow point is changed instead
-        cameraFollowPoint.transform.rotation = Quaternion.Euler(-cameraRotation.y, cameraRotation.x, 0f);
+        cameraFollowPoint.transform.rotation = Quaternion.Euler(cameraRotation.y * verticalInverterValue, cameraRotation.x, 0f);
     }
 
     private void AnimateMovement() {
