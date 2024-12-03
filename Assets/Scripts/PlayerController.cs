@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour {
 
     [Header("References")]
     public Transform player;
-    public Transform playerObj;
     public Rigidbody rb;
 
 
