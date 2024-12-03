@@ -4663,6 +4663,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
+      propertyPath: runSpeed
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1534768496}

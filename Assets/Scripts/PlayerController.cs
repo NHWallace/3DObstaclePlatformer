@@ -16,10 +16,10 @@ public class PlayerController : MonoBehaviour {
 
 
     [Header("Movement Settings")]
-    public float runSpeed = 10f;
+    public float runSpeed = 6.5f;
     public float runAcceleration = 180f;
     public float groundDrag = 15f;
-    public float jumpHeight = 580f;
+    public float jumpHeight = 650;
     public float gravityModifier = 2.2f;
 
     [Header("Camera Settings")]
@@ -138,7 +138,8 @@ public class PlayerController : MonoBehaviour {
         if (!Mathf.Approximately(gravityModifier, 1f)) {
             // Player has a special gravity value
             rb.useGravity = false;
-            Vector3 gravityForce = new Vector3(0, 1f, 0) * -9.81f * gravityModifier * rb.mass;
+            float deltaTimeModifier = 60; // scale up to account for how low gravity force will be after accounting for delta time
+            Vector3 gravityForce = new Vector3(0, 1f, 0) * -9.81f * gravityModifier * rb.mass * Time.fixedDeltaTime * deltaTimeModifier;
             rb.AddForce(gravityForce);
 
         }
