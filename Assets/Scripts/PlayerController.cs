@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour {
     }
     
     public void Die() {
-        //Respawn();
+        Respawn();
         healthHandler.currentHealth = healthHandler.maxHealth;
         healthHandler.healthBar.SetHealth(healthHandler.currentHealth);
     }
@@ -191,12 +191,10 @@ public class PlayerController : MonoBehaviour {
             rb.velocity = new Vector3(newVelocity.x, rb.velocity.y, newVelocity.z);
         }
     }
-    /*
+    
     private void Respawn() {
-        characterController.velocity.Set(0f, 0f, 0f);
-        characterController.enabled = false;
-        characterController.transform.position = spawnPoint.position;
-        characterController.enabled = true;
-    }*/
+        rb.velocity = Vector3.zero;
+        this.transform.position = spawnPoint.position;
+    }
 
 }
