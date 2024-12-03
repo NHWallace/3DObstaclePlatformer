@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private void UpdateGroundedState() {
-        groundedPlayer = Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+        groundedPlayer = Physics.Raycast(transform.position, -Vector3.up, 0.2f);
         playerAnimator.SetBool("Grounded", groundedPlayer);
     }
 
