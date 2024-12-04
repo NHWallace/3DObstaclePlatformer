@@ -4015,7 +4015,7 @@ PrefabInstance:
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: runSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
@@ -4025,7 +4025,7 @@ PrefabInstance:
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: jumpHeight
-      value: 520
+      value: 580
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
@@ -4035,7 +4035,7 @@ PrefabInstance:
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: gravityModifier
-      value: 1.4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5442252961233339254, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
