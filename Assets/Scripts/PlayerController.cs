@@ -16,11 +16,11 @@ public class PlayerController : MonoBehaviour {
 
 
     [Header("Movement Settings")]
-    public float runSpeed = 10f;
+    public float runSpeed = 4;
     public float runAcceleration = 180f;
-    public float groundDrag = 15f;
-    public float jumpHeight = 580f;
-    public float gravityModifier = 2.2f;
+    public float groundDrag = 10f;
+    public float jumpHeight = 580;
+    public float gravityModifier = 1.5f;
 
     [Header("Camera Settings")]
     public float lookSenseH = 0.1f; // Horizontal look sensitivity
@@ -138,7 +138,8 @@ public class PlayerController : MonoBehaviour {
         if (!Mathf.Approximately(gravityModifier, 1f)) {
             // Player has a special gravity value
             rb.useGravity = false;
-            Vector3 gravityForce = new Vector3(0, 1f, 0) * -9.81f * gravityModifier * rb.mass;
+            float deltaTimeModifier = 60; // scale up to account for how low gravity force will be after accounting for delta time
+            Vector3 gravityForce = new Vector3(0, 1f, 0) * -9.81f * gravityModifier * rb.mass * Time.fixedDeltaTime * deltaTimeModifier;
             rb.AddForce(gravityForce);
 
         }
@@ -150,7 +151,7 @@ public class PlayerController : MonoBehaviour {
 
 
     private void UpdateGroundedState() {
-        groundedPlayer = Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+        groundedPlayer = Physics.Raycast(transform.position, -Vector3.up, 0.2f);
         playerAnimator.SetBool("Grounded", groundedPlayer);
     }
 
