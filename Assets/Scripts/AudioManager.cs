@@ -65,4 +65,15 @@ public class AudioManager : MonoBehaviour
     public void PauseRunningSound() {
         runningSource.Pause();
     }
+
+    public void SetEffectsVolume(float volume) {
+       Debug.Log("SFX Volume changed to: " + volume);
+        effectsSource.volume = volume;
+        runningSource.volume = volume;
+    }
+
+    public void SetMusicVolume(float volume) {
+        Debug.Log("Music Volume changed to: " + volume);
+        musicSource.volume = volume;
+    }
 }
