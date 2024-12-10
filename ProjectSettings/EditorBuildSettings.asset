@@ -12,14 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 4c9ac9e76d16aaa43ba08abfaf2bbe35
   - enabled: 1
-    path: Assets/Scenes/5 - FastOrSafe.unity
-    guid: 9d58f583e8fd0dd488b2f04b28c08c9f
-  - enabled: 0
     path: Assets/Scenes/1 - TutorialLevel.unity
     guid: d3fe8d0582f63034dbe0641b673c79e5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/2 - SpinningDanger.unity
     guid: 74195578d042285418dc27ed7fd488ae
+  - enabled: 1
+    path: Assets/Scenes/3 - GoingUp.unity
+    guid: 39a9ea36f5c80af40b168e35c6002450
+  - enabled: 1
+    path: Assets/Scenes/4 - CareForARide.unity
+    guid: 6450ed1da61c8b84494091c529abdaee
+  - enabled: 1
+    path: Assets/Scenes/5 - FastOrSafe.unity
+    guid: 9d58f583e8fd0dd488b2f04b28c08c9f
   - enabled: 0
     path: Assets/Scenes/TestingLevel.unity
     guid: 99c9720ab356a0642a771bea13969a05
