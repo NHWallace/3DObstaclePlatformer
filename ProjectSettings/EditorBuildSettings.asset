@@ -9,15 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 8bd25ab0f437c68438c7eff27c57de47
   - enabled: 1
-    path: Assets/Scenes/IntroLevel.unity
-    guid: d3fe8d0582f63034dbe0641b673c79e5
-  - enabled: 1
-    path: Assets/Scenes/SpinningDanger.unity
-    guid: 74195578d042285418dc27ed7fd488ae
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 4c9ac9e76d16aaa43ba08abfaf2bbe35
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 9d58f583e8fd0dd488b2f04b28c08c9f
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/IntroLevel.unity
+    guid: d3fe8d0582f63034dbe0641b673c79e5
+  - enabled: 0
+    path: Assets/Scenes/SpinningDanger.unity
+    guid: 74195578d042285418dc27ed7fd488ae
+  - enabled: 0
     path: Assets/Scenes/TestingLevel.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
