@@ -21,4 +21,8 @@ public class Timer : MonoBehaviour
 
         timerLabel.text = "Time taken: " + minutes + ":" + string.Format("{0:00.000}", seconds);
     }
+
+    public float GetTime() {
+        return this.timer;
+    }
 }
