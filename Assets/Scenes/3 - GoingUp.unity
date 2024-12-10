@@ -5395,7 +5395,7 @@ PrefabInstance:
     - target: {fileID: 3849863030880149496, guid: 299dadc667f6cf341bb97da17ca5745d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: GoingUp
+      value: 4 - CareForARide
       objectReference: {fileID: 0}
     - target: {fileID: 4100581618604399981, guid: 299dadc667f6cf341bb97da17ca5745d,
         type: 3}
