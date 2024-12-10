@@ -3206,6 +3206,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 299dadc667f6cf341bb97da17ca5745d, type: 3}
+--- !u!114 &875718183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4608481410096373523, guid: 299dadc667f6cf341bb97da17ca5745d,
+    type: 3}
+  m_PrefabInstance: {fileID: 875718182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &875718184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4887601256314576317, guid: 299dadc667f6cf341bb97da17ca5745d,
+    type: 3}
+  m_PrefabInstance: {fileID: 875718182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &875718185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6395052674514702926, guid: 299dadc667f6cf341bb97da17ca5745d,
+    type: 3}
+  m_PrefabInstance: {fileID: 875718182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &875718186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1477270143871457185, guid: 299dadc667f6cf341bb97da17ca5745d,
+    type: 3}
+  m_PrefabInstance: {fileID: 875718182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &875718187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5243706338878057978, guid: 299dadc667f6cf341bb97da17ca5745d,
+    type: 3}
+  m_PrefabInstance: {fileID: 875718182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &899962820 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6992654788645476301, guid: 74e8e1c76d258bc4c9f071738ea495aa,
@@ -3890,6 +3938,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: FinishLine
       objectReference: {fileID: 0}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: star2
+      value: 
+      objectReference: {fileID: 875718184}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: star3
+      value: 
+      objectReference: {fileID: 875718183}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: cashLabel
+      value: 
+      objectReference: {fileID: 875718185}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: timerObject
+      value: 
+      objectReference: {fileID: 875718187}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: baseCurrency
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: timeFor2Stars
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: timeFor3Stars
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: levelCompleteScreen
+      value: 
+      objectReference: {fileID: 875718186}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

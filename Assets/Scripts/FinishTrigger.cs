@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class FinishTrigger : MonoBehaviour
 {
-    [SerializeField] private string nextLevelName;
+    [SerializeField] private GameManager gameManager;
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.TryGetComponent<PlayerController>(out PlayerController player)) {
-            SceneManager.LoadScene(nextLevelName);
+            gameManager.TriggerLevelCompletion();
         }
     }
 }
