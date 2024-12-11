@@ -78,7 +78,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.95, y: 0.22647041, z: 2.95}
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &4823931695646192297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   pointsToMoveTo:
   - {fileID: 4076410377090336402}
   - {fileID: 6009003453482156837}
-  moveSpeed: 2
+  moveSpeed: 1
 --- !u!1 &3476989843537017904
 GameObject:
   m_ObjectHideFlags: 0

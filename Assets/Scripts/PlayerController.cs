@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour {
     private Vector2 movementInput;
     private Vector2 mouseDelta;
     private bool jumpedThisFrame;
+    private float jumpCooldown = 0.25f;
+    private float timeSinceLastJump = 0f;
+
     private void Awake() {
         inputManager = InputManager.Instance;
         healthHandler = GetComponent<PlayerHealth>();
@@ -55,17 +58,25 @@ public class PlayerController : MonoBehaviour {
 
     private void GetInput() {
         movementInput = inputManager.GetPlayerMovement();
-        jumpedThisFrame = inputManager.PlayerJumpedThisFrame();
+
+        // This validation prevents the jump flag from being consued erronously
+        // when an update frame happens between when a player tries to jump
+        // and the fixed update frame where the jump is supposed to happen
+        if (jumpedThisFrame == false && groundedPlayer) {
+            jumpedThisFrame = inputManager.PlayerJumpedThisFrame();
+        }
+
         mouseDelta = inputManager.GetMouseDelta();
         UpdateGroundedState();
     }
 
     private void FixedUpdate() {
         // Rigidbody movement should be handled in FixedUpdate, not Update
-        MoveVertical();
         MoveHorizontal();
+        MoveVertical();
         Look();
         AnimateMovement();
+        timeSinceLastJump += Time.fixedDeltaTime;
     }
 
     private void MoveHorizontal() {
@@ -119,9 +130,9 @@ public class PlayerController : MonoBehaviour {
     
     private void MoveVertical() {
         //jumpedThisFrame moved to GetInput();
-        if (jumpedThisFrame && groundedPlayer) {
+        if (jumpedThisFrame && groundedPlayer && (timeSinceLastJump > jumpCooldown)) {
             Vector3 jumpForce = new Vector3 (0, jumpHeight, 0);
-            rb.AddForce(jumpForce);
+            rb.AddForce(jumpForce, ForceMode.VelocityChange);
 
             playerAnimator.SetTrigger("Jump");
             AudioManager.Instance.PlayEffect("Jump");
@@ -129,6 +140,7 @@ public class PlayerController : MonoBehaviour {
             // Reset booleans used in jumping to ensure jump effects do not occur more than once per jump
             jumpedThisFrame = false;
             groundedPlayer = false;
+            timeSinceLastJump = 0;
         }
 
         ApplyGravity(); // Needed for the player to have different gravity than other rigidbodies in scene
@@ -140,7 +152,7 @@ public class PlayerController : MonoBehaviour {
             rb.useGravity = false;
             float deltaTimeModifier = 60; // scale up to account for how low gravity force will be after accounting for delta time
             Vector3 gravityForce = new Vector3(0, 1f, 0) * -9.81f * gravityModifier * rb.mass * Time.fixedDeltaTime * deltaTimeModifier;
-            rb.AddForce(gravityForce);
+            rb.AddForce(gravityForce, ForceMode.Acceleration);
 
         }
         else {

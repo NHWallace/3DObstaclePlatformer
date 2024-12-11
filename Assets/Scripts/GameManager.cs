@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject levelCompleteScreen;
     [SerializeField] GameObject timerObject;
     [SerializeField] TMP_Text cashLabel;
+    [SerializeField] TMP_Text timeTakenLabel;
     [SerializeField] Image star2;
     [SerializeField] Image star3;
     [SerializeField] Color starObtainedColor;
@@ -32,8 +33,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void TriggerLevelCompletion() {
-        timeTaken = timer.GetTime();
         Time.timeScale = 0;
+        timer.Pause(); // workaround to prevent desync between the completion screen time and the level time above it
         int starsObtained = 0;
 
         if (timeTaken < timeFor3Stars) {
@@ -56,11 +57,16 @@ public class GameManager : MonoBehaviour
 
         cashLabel.text = "+" + currencyObtained;
 
+        float secondsTaken = timer.GetSeconds();
+        float minutesTaken = timer.GetMinutes();
+        timeTakenLabel.text = "You beat this level in: " + minutesTaken + ":" + string.Format("{0:00.000}", secondsTaken);
+
         levelCompleteScreen.SetActive(true);
     }
 
     public void GoToLevel(string levelName) {
         Time.timeScale = 1;
+        timer.Unpause();
         SceneManager.LoadScene(levelName);
     }
 

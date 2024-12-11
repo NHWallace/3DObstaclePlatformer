@@ -4676,18 +4676,23 @@ PrefabInstance:
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: runSpeed
-      value: 6.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: jumpHeight
-      value: 650
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1534768496}
+    - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
+      propertyPath: gravityModifier
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5442252961233339254, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: m_MinMoveDistance
@@ -5687,6 +5692,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1565816238}
+    - target: {fileID: 3849863030880149496, guid: 299dadc667f6cf341bb97da17ca5745d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 2 - SpinningDanger
+      objectReference: {fileID: 0}
     - target: {fileID: 4100581618604399981, guid: 299dadc667f6cf341bb97da17ca5745d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -6569,6 +6579,18 @@ Transform:
   - {fileID: 1389319242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1420995303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2473130412095917297, guid: 299dadc667f6cf341bb97da17ca5745d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1290597244}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1434760781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6649818112265307802, guid: f7740f984be6ce449a79ff94eefdd9b6,
@@ -10427,6 +10449,11 @@ PrefabInstance:
       propertyPath: timerObject
       value: 
       objectReference: {fileID: 1964804570}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: timeTakenLabel
+      value: 
+      objectReference: {fileID: 1420995303}
     - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
         type: 3}
       propertyPath: levelCompleteScreen
