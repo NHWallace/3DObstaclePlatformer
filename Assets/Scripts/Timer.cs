@@ -11,10 +11,13 @@ public class Timer : MonoBehaviour
     private float timer = 0f;
     private int minutes;
     private float seconds;
+    private bool paused;
 
     // Update is called once per frame
     void Update()
     {
+        if (paused) return;
+
         timer += Time.deltaTime;
         seconds = timer % 60;
         minutes = (int)timer / 60;
@@ -24,5 +27,21 @@ public class Timer : MonoBehaviour
 
     public float GetTime() {
         return this.timer;
+    }
+
+    public float GetSeconds() {
+        return seconds;
+    }
+
+    public float GetMinutes() {
+        return minutes;
+    }
+
+    public void Pause() {
+        paused = true;
+    }
+
+    public void Unpause() {
+        paused = false;
     }
 }

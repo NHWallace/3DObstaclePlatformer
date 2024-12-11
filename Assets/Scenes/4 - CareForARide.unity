@@ -10215,6 +10215,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2079001892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2473130412095917297, guid: 299dadc667f6cf341bb97da17ca5745d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2079001887}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2079001893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1477270143871457185, guid: 299dadc667f6cf341bb97da17ca5745d,
@@ -10461,6 +10473,11 @@ PrefabInstance:
       propertyPath: timerObject
       value: 
       objectReference: {fileID: 848565273}
+    - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
+        type: 3}
+      propertyPath: timeTakenLabel
+      value: 
+      objectReference: {fileID: 2079001892}
     - target: {fileID: 8408774086353013846, guid: b57c5ea743969cd4495081b9ecdb3c38,
         type: 3}
       propertyPath: levelCompleteScreen
