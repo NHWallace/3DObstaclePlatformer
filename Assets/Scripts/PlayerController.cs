@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour {
         // This validation prevents the jump flag from being consued erronously
         // when an update frame happens between when a player tries to jump
         // and the fixed update frame where the jump is supposed to happen
-        if (jumpedThisFrame == false) {
+        if (jumpedThisFrame == false && groundedPlayer) {
             jumpedThisFrame = inputManager.PlayerJumpedThisFrame();
         }
 
@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         // Rigidbody movement should be handled in FixedUpdate, not Update
-        MoveVertical();
         MoveHorizontal();
+        MoveVertical();
         Look();
         AnimateMovement();
         timeSinceLastJump += Time.fixedDeltaTime;
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour {
         //jumpedThisFrame moved to GetInput();
         if (jumpedThisFrame && groundedPlayer && (timeSinceLastJump > jumpCooldown)) {
             Vector3 jumpForce = new Vector3 (0, jumpHeight, 0);
-            rb.AddForce(jumpForce);
+            rb.AddForce(jumpForce, ForceMode.VelocityChange);
 
             playerAnimator.SetTrigger("Jump");
             AudioManager.Instance.PlayEffect("Jump");
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour {
             rb.useGravity = false;
             float deltaTimeModifier = 60; // scale up to account for how low gravity force will be after accounting for delta time
             Vector3 gravityForce = new Vector3(0, 1f, 0) * -9.81f * gravityModifier * rb.mass * Time.fixedDeltaTime * deltaTimeModifier;
-            rb.AddForce(gravityForce);
+            rb.AddForce(gravityForce, ForceMode.Acceleration);
 
         }
         else {
