@@ -2015,7 +2015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c626d95c0f8a44741b7d76c19c9f5a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeeds: {x: -150, y: 0, z: 0}
+  rotationSpeeds: {x: -110, y: 0, z: 0}
 --- !u!1 &572150763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9173296676977608533, guid: 74e8e1c76d258bc4c9f071738ea495aa,
@@ -2668,7 +2668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c626d95c0f8a44741b7d76c19c9f5a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeeds: {x: 150, y: 0, z: 0}
+  rotationSpeeds: {x: 110, y: 0, z: 0}
 --- !u!64 &764298242
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6904,7 +6904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c626d95c0f8a44741b7d76c19c9f5a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeeds: {x: 150, y: 0, z: 0}
+  rotationSpeeds: {x: 110, y: 0, z: 0}
 --- !u!64 &1770380883
 MeshCollider:
   m_ObjectHideFlags: 0
