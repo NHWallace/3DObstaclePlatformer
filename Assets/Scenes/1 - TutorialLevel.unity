@@ -4676,18 +4676,23 @@ PrefabInstance:
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: runSpeed
-      value: 6.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: jumpHeight
-      value: 650
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1534768496}
+    - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
+      propertyPath: gravityModifier
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5442252961233339254, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: m_MinMoveDistance

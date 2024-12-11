@@ -10711,9 +10711,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
+      propertyPath: runSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 632332718}
+    - target: {fileID: 4669035107191709005, guid: f5ce41b912feb1349aafab15f1cdba23,
+        type: 3}
+      propertyPath: gravityModifier
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7871244213074916910, guid: f5ce41b912feb1349aafab15f1cdba23,
         type: 3}
       propertyPath: m_LocalPosition.x
